@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Da Nang / Hoi An Itinerary Map</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #1a1a2e; color: #e0e0e0; }
+  #map { width: 100%; height: 65vh; border-bottom: 3px solid #e94560; }
+  .header { background: linear-gradient(135deg, #16213e, #0f3460); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { font-size: 22px; color: #fff; font-weight: 600; }
+  .header span { font-size: 14px; color: #a0a0b0; }
+  .legend-bar { display: flex; gap: 12px; padding: 12px 24px; background: #16213e; flex-wrap: wrap; border-bottom: 1px solid #2a2a4a; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #c0c0d0; cursor: pointer; padding: 4px 10px; border-radius: 16px; transition: background 0.2s; }
+  .legend-item:hover { background: rgba(255,255,255,0.08); }
+  .legend-item.active { background: rgba(255,255,255,0.12); }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .sidebar { padding: 16px 24px; max-height: 35vh; overflow-y: auto; }
+  .sidebar::-webkit-scrollbar { width: 6px; }
+  .sidebar::-webkit-scrollbar-thumb { background: #3a3a5a; border-radius: 3px; }
+  .day-section { margin-bottom: 16px; }
+  .day-header { font-size: 15px; font-weight: 700; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #2a2a4a; }
+  .spot { display: flex; align-items: flex-start; gap: 10px; padding: 6px 8px; border-radius: 8px; cursor: pointer; transition: background 0.2s; margin-bottom: 2px; }
+  .spot:hover { background: rgba(255,255,255,0.06); }
+  .spot-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .spot-info { flex: 1; }
+  .spot-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .spot-desc { font-size: 12px; color: #8888a0; margin-top: 2px; }
+  .leaflet-popup-content-wrapper { background: #1a1a2e; color: #e0e0e0; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+  .leaflet-popup-tip { background: #1a1a2e; }
+  .leaflet-popup-content { margin: 12px 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  .popup-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .popup-day { font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+  .popup-desc { font-size: 13px; color: #a0a0b0; line-height: 1.4; }
+  .popup-drive { font-size: 11px; color: #e94560; margin-top: 6px; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Da Nang & Hoi An — 7 Day Itinerary</h1>
+  <span>March 26 – April 1, 2026</span>
+</div>
+
+<div id="map"></div>
+
+<div class="legend-bar" id="legendBar"></div>
+
+<div class="sidebar" id="sidebar"></div>
+
+<script>
+const dayColors = {
+  'Day 1-2': '#4ecdc4',
+  'Day 3': '#ff6b6b',
+  'Day 4': '#ffd93d',
+  'Day 5': '#6c5ce7',
+  'Day 6A': '#ff9ff3',
+  'Day 6B': '#54a0ff',
+  'Home Base': '#e94560',
+  'Alt Resort': '#00b894'
+};
+
+const locations = [
+  {
+    name: 'Hyatt Regency Danang',
+    lat: 16.0194, lng: 108.2661,
+    day: 'Home Base',
+    desc: 'Your resort — 5 pools, waterslide, 750m beach, multiple restaurants',
+    drive: '20 min from airport'
+  },
+  {
+    name: 'Four Seasons Nam Hai',
+    lat: 15.9097, lng: 108.3388,
+    day: 'Alt Resort',
+    desc: 'Alternative luxury option — 3 cascading infinity pools, 1km private beach, all-villa',
+    drive: '40 min from airport, 10 min from Hoi An'
+  },
+  {
+    name: 'My Khe Beach',
+    lat: 16.0544, lng: 108.2476,
+    day: 'Day 1-2',
+    desc: 'Da Nang\'s famous main beach — wide white sand, calm water, consistently rated among Asia\'s best',
+    drive: '10 min north of Hyatt'
+  },
+  {
+    name: 'Dragon Bridge',
+    lat: 16.0611, lng: 108.2278,
+    day: 'Day 1-2',
+    desc: 'Iconic 2,185-ft bridge — LED-lit at night, breathes fire & water at 9pm on Sat/Sun',
+    drive: '15 min from Hyatt'
+  },
+  {
+    name: 'Son Tra Night Market',
+    lat: 16.0685, lng: 108.2350,
+    day: 'Day 1-2',
+    desc: 'Local night market — street food, souvenirs, head/foot massages, authentic atmosphere',
+    drive: '15 min from Hyatt'
+  },
+  {
+    name: 'Hoi An Ancient Town',
+    lat: 15.8801, lng: 108.3380,
+    day: 'Day 3',
+    desc: 'UNESCO World Heritage Site — lantern-lit streets, riverside dining, tailoring shops, night market',
+    drive: '30 min from Hyatt'
+  },
+  {
+    name: 'Japanese Covered Bridge',
+    lat: 15.8794, lng: 108.3260,
+    day: 'Day 3',
+    desc: 'Hoi An\'s iconic 18th-century bridge — symbol of the town, beautiful at night with lanterns',
+    drive: 'In Hoi An Ancient Town'
+  },
+  {
+    name: 'Bánh Mì Phượng',
+    lat: 15.8773, lng: 108.3291,
+    day: 'Day 3',
+    desc: 'Anthony Bourdain\'s famous pick — legendary bánh mì sandwiches, must-try street food',
+    drive: 'In Hoi An Ancient Town'
+  },
+  {
+    name: 'Hoi An Night Market',
+    lat: 15.8770, lng: 108.3290,
+    day: 'Day 3',
+    desc: 'Riverside market along the Thu Bon River — lanterns, food stalls, handmade crafts',
+    drive: 'In Hoi An Ancient Town'
+  },
+  {
+    name: 'Ba Na Hills & Golden Bridge',
+    lat: 15.9977, lng: 107.9882,
+    day: 'Day 4',
+    desc: 'Mountain resort complex — famous Golden Bridge (giant stone hands), French Village, cable car, theme park',
+    drive: '45 min from Hyatt'
+  },
+  {
+    name: 'Marble Mountains',
+    lat: 16.0036, lng: 108.2631,
+    day: 'Day 5',
+    desc: 'Five limestone/marble outcrops — caves, Buddhist grottoes, pagodas, panoramic coastal views',
+    drive: '10 min from Hyatt'
+  },
+  {
+    name: 'Non Nuoc Beach',
+    lat: 15.9950, lng: 108.2700,
+    day: 'Day 5',
+    desc: 'Quieter beach south of My Khe at the foot of Marble Mountains — fine white sand, turquoise water',
+    drive: '10 min from Hyatt'
+  },
+  {
+    name: 'Hai Van Pass Summit',
+    lat: 16.2110, lng: 108.1320,
+    day: 'Day 6A',
+    desc: 'Option A — Legendary 20km coastal mountain road, French-era bunker at summit, jaw-dropping views',
+    drive: '45 min from Hyatt to summit'
+  },
+  {
+    name: 'Son Tra Peninsula (Monkey Mountain)',
+    lat: 16.1167, lng: 108.2833,
+    day: 'Day 6A',
+    desc: 'Nature reserve — rare red-shanked douc langurs, Linh Ung Pagoda (67m Lady Buddha), Ban Co Peak views',
+    drive: '25 min from Hyatt'
+  },
+  {
+    name: 'An Bang Beach',
+    lat: 15.9063, lng: 108.3355,
+    day: 'Day 6B',
+    desc: 'Option B — Bohemian beach near Hoi An, great beach bars and seafood shacks, relaxed vibe',
+    drive: '25 min from Hyatt'
+  },
+  {
+    name: 'My Son Sanctuary',
+    lat: 15.7684, lng: 108.1222,
+    day: 'Day 6B',
+    desc: 'UNESCO World Heritage Site — ancient Champa Hindu temples dating to 4th century, jungle setting',
+    drive: '1 hr 15 min from Hyatt'
+  },
+  {
+    name: 'Da Nang International Airport',
+    lat: 16.0556, lng: 108.1992,
+    day: 'Home Base',
+    desc: 'DAD — direct flights to/from Tokyo Narita & Haneda on Vietnam Airlines and ANA',
+    drive: '20 min from Hyatt'
+  }
+];
+
+// Initialize map
+const map = L.map('map', {
+  center: [15.98, 108.22],
+  zoom: 11,
+  zoomControl: true
+});
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  maxZoom: 19
+}).addTo(map);
+
+// Custom marker icons
+function createIcon(color) {
+  return L.divIcon({
+    className: 'custom-marker',
+    html: `<div style="
+      width: 28px; height: 28px; border-radius: 50%;
+      background: ${color}; border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      display: flex; align-items: center; justify-content: center;
+    "></div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    popupAnchor: [0, -16]
+  });
+}
+
+// Add markers
+const markers = {};
+const dayGroups = {};
+
+locations.forEach(loc => {
+  const color = dayColors[loc.day] || '#fff';
+  const marker = L.marker([loc.lat, loc.lng], { icon: createIcon(color) }).addTo(map);
+
+  marker.bindPopup(`
+    <div class="popup-title">${loc.name}</div>
+    <div class="popup-day" style="color: ${color}">${loc.day}</div>
+    <div class="popup-desc">${loc.desc}</div>
+    <div class="popup-drive">${loc.drive}</div>
+  `, { maxWidth: 280 });
+
+  markers[loc.name] = marker;
+
+  if (!dayGroups[loc.day]) dayGroups[loc.day] = [];
+  dayGroups[loc.day].push(loc);
+});
+
+// Build legend
+const legendBar = document.getElementById('legendBar');
+Object.entries(dayColors).forEach(([day, color]) => {
+  if (!dayGroups[day]) return;
+  const item = document.createElement('div');
+  item.className = 'legend-item active';
+  item.innerHTML = `<div class="legend-dot" style="background:${color}"></div>${day}`;
+  item.onclick = () => {
+    const isActive = item.classList.toggle('active');
+    dayGroups[day].forEach(loc => {
+      if (isActive) markers[loc.name].addTo(map);
+      else map.removeLayer(markers[loc.name]);
+    });
+  };
+  legendBar.appendChild(item);
+});
+
+// Build sidebar
+const sidebar = document.getElementById('sidebar');
+const dayOrder = ['Home Base', 'Alt Resort', 'Day 1-2', 'Day 3', 'Day 4', 'Day 5', 'Day 6A', 'Day 6B'];
+const dayLabels = {
+  'Home Base': 'Home Base',
+  'Alt Resort': 'Alternative Resort',
+  'Day 1-2': 'Days 1-2 — Arrival + Beach & Pool',
+  'Day 3': 'Day 3 — Hoi An Ancient Town (Afternoon/Evening)',
+  'Day 4': 'Day 4 — Ba Na Hills Morning + Pool Afternoon',
+  'Day 5': 'Day 5 — Marble Mountains Morning + Beach Afternoon',
+  'Day 6A': 'Day 6 Option A — Hai Van Pass / Son Tra',
+  'Day 6B': 'Day 6 Option B — Hoi An Return / My Son'
+};
+
+dayOrder.forEach(day => {
+  if (!dayGroups[day]) return;
+  const section = document.createElement('div');
+  section.className = 'day-section';
+
+  const color = dayColors[day];
+  section.innerHTML = `<div class="day-header" style="color:${color}">${dayLabels[day]}</div>`;
+
+  dayGroups[day].forEach(loc => {
+    const spot = document.createElement('div');
+    spot.className = 'spot';
+    spot.innerHTML = `
+      <div class="spot-dot" style="background:${color}"></div>
+      <div class="spot-info">
+        <div class="spot-name">${loc.name}</div>
+        <div class="spot-desc">${loc.desc} · ${loc.drive}</div>
+      </div>
+    `;
+    spot.onclick = () => {
+      map.flyTo([loc.lat, loc.lng], 14, { duration: 0.8 });
+      markers[loc.name].openPopup();
+    };
+    section.appendChild(spot);
+  });
+
+  sidebar.appendChild(section);
+});
+
+// Fit bounds to show all markers
+const allCoords = locations.map(l => [l.lat, l.lng]);
+map.fitBounds(allCoords, { padding: [40, 40] });
+</script>
+
+</body>
+</html>
