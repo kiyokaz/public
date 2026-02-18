@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids GPS Tracker Comparison 2025–2026 Japan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #17171f;
+    --surface2: #1e1e2a;
+    --border: #2a2a38;
+    --accent: #7ee8a2;
+    --accent2: #5bc8f5;
+    --accent3: #f7c59f;
+    --warn: #f7796e;
+    --muted: #5a5a72;
+    --text: #e4e4f0;
+    --text-dim: #9898b0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 40px 24px 80px;
+  }
+
+  .header {
+    max-width: 1200px;
+    margin: 0 auto 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 13px;
+    max-width: 560px;
+    margin-top: 4px;
+  }
+
+  .legend {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: var(--accent); }
+  .dot-blue { background: var(--accent2); }
+  .dot-orange { background: var(--accent3); }
+  .dot-red { background: var(--warn); }
+
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+  }
+
+  thead tr {
+    background: var(--surface2);
+    border-bottom: 2px solid var(--border);
+  }
+
+  th {
+    padding: 18px 16px;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  th.device-col { width: 200px; color: var(--text-dim); }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(126,232,162,0.04); }
+
+  td {
+    padding: 18px 16px;
+    vertical-align: top;
+  }
+
+  .device-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .device-brand {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .device-tag {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .tag-featured { background: rgba(126,232,162,0.15); color: var(--accent); border: 1px solid rgba(126,232,162,0.3); }
+  .tag-budget { background: rgba(91,200,245,0.12); color: var(--accent2); border: 1px solid rgba(91,200,245,0.25); }
+  .tag-premium { background: rgba(247,197,159,0.12); color: var(--accent3); border: 1px solid rgba(247,197,159,0.25); }
+  .tag-compact { background: rgba(200,200,230,0.1); color: #b0b0d8; border: 1px solid rgba(200,200,230,0.2); }
+  .tag-new { background: rgba(247,121,110,0.12); color: var(--warn); border: 1px solid rgba(247,121,110,0.25); }
+
+  .price-main {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .price-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  .monthly-main {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .monthly-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .badge-yes { background: rgba(126,232,162,0.12); color: var(--accent); }
+  .badge-no { background: rgba(90,90,114,0.2); color: var(--muted); }
+  .badge-call { background: rgba(247,197,159,0.15); color: var(--accent3); }
+
+  .precision-s {
+    display: inline-block;
+    background: var(--accent);
+    color: #0f1f15;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 5px;
+    letter-spacing: 0.05em;
+  }
+
+  .precision-a {
+    display: inline-block;
+    background: var(--accent2);
+    color: #0a1e26;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 5px;
+    letter-spacing: 0.05em;
+  }
+
+  .precision-b {
+    display: inline-block;
+    background: #3a3a50;
+    color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 5px;
+    letter-spacing: 0.05em;
+  }
+
+  .battery {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .battery-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  .feat-icon {
+    font-size: 11px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .verdict {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    max-width: 200px;
+  }
+
+  .verdict strong {
+    display: block;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .best-for-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    margin-top: 4px;
+  }
+
+  /* Row highlight for BoT Talk */
+  tr.highlight-row td:first-child {
+    border-left: 3px solid var(--accent);
+  }
+
+  .waterproof-cell {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+
+  .waterproof-good { color: var(--accent2); }
+  .waterproof-ok { color: var(--text-dim); }
+
+  .network-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-dim);
+    margin: 1px 1px 0 0;
+  }
+
+  .footer-note {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .device-img-wrap {
+    width: 100%;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .device-img {
+    max-width: 100%;
+    max-height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  }
+
+  .img-fallback {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    padding: 8px;
+    line-height: 1.5;
+  }
+
+  .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 7px;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    color: var(--accent2);
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .site-link:hover {
+    background: rgba(91,200,245,0.12);
+    border-color: var(--accent2);
+  }
+  .site-link-amazon {
+    color: #f0a050;
+    border-color: rgba(240,160,80,0.25);
+    background: rgba(240,160,80,0.06);
+    margin-left: 4px;
+  }
+  .site-link-amazon:hover {
+    background: rgba(240,160,80,0.14);
+    border-color: #f0a050;
+  }
+  .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 20px 12px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">Japan · 2025–2026 Updated</div>
+  <h1>Kids GPS Tracker<br>Comparison Guide</h1>
+  <p class="subtitle">Kids GPS tracker comparison for Japan — pricing, features, and precision rated across 6 leading devices.</p>
+  <div class="legend">
+    <div class="legend-item"><div class="dot dot-green"></div> Top Pick / Featured</div>
+    <div class="legend-item"><div class="dot dot-blue"></div> Budget / Value</div>
+    <div class="legend-item"><div class="dot dot-orange"></div> Premium</div>
+    <div class="legend-item"><div class="dot dot-red"></div> New Release</div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th class="device-col">Device</th>
+        <th>Device Price</th>
+        <th>Monthly Fee</th>
+        <th>GPS Precision</th>
+        <th>Voice / Talk</th>
+        <th>Battery</th>
+        <th>Waterproof</th>
+        <th>Standout Features</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- BoT Talk -->
+      <tr class="highlight-row">
+        <td>
+          <div class="device-img-wrap">
+            <img class="device-img"
+              src="https://cdn.prod.website-files.com/5e098b0d74360832f6e51991/67960c23196323fddacefadd_2_BoT_2025_A1_v001.png"
+              alt="BoT Talk"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="img-fallback" style="display:none">BoT Talk<br>Bsize</div>
+          </div>
+          <div class="device-name">BoT Talk</div>
+          <div class="device-brand">Bsize (Yokohama)</div>
+          <div class="device-tag tag-featured">★ Top Rated</div>
+          <div class="link-row">
+            <a class="site-link" href="https://www.bsize.com/bot/talk" target="_blank" rel="noopener">🔗 Official Site</a>
+            <a class="site-link site-link-amazon" href="https://www.amazon.co.jp/s?k=BoT%E3%83%88%E3%83%BC%E3%82%AF+Bsize" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </td>
+        <td>
+          <div class="price-main">¥5,280</div>
+          <div class="price-note">Amazon / official<br>2025 latest w/ display</div>
+        </td>
+        <td>
+          <div class="monthly-main">¥528–748</div>
+          <div class="monthly-note">GPS only ¥528<br>GPS + Talk ¥748</div>
+        </td>
+        <td><span class="precision-s">S</span><br><span style="font-size:10px;color:var(--muted);margin-top:3px;display:block;">GPS+WiFi+Cell<br>Michibiki QZSS support</span></td>
+        <td>
+          <span class="badge badge-yes">✓ Voice</span>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">AI reads & sends.<br>Text ↔ voice conversion</div>
+        </td>
+        <td>
+          <div class="battery">~1 week</div>
+          <div class="battery-note">USB-C charge</div>
+        </td>
+        <td>
+          <div class="waterproof-cell waterproof-ok">Splash-resistant<br><span style="color:var(--muted);font-size:10px">No IP rating stated</span></div>
+        </td>
+        <td>
+          <div class="features-list">
+            <div class="feat"><span class="feat-icon">◆</span>AI learns behavior patterns over time</div>
+            <div class="feat"><span class="feat-icon">◆</span>Safety Display screen (2025 model)</div>
+            <div class="feat"><span class="feat-icon">◆</span>Voice ↔ text message conversion</div>
+            <div class="feat"><span class="feat-icon">◆</span>Good Design Award 2025</div>
+          </div>
+        </td>
+        <td>
+          <div class="verdict">
+            <strong>All-around winner</strong>
+            Parents who want voice comms + smart AI patterns
+          </div>
+          <div class="best-for-pill">Families · Talk</div>
+        </td>
+      </tr>
+
+      <!-- Anshin Watcher LE -->
+      <tr>
+        <td>
+          <div class="device-img-wrap">
+            <img class="device-img"
+              src="https://homeiot.kddi.com/anshinwatcher/kids/assets/img/fv/device.webp"
+              alt="Anshin Watcher LE"
+              onerror="this.src='https://homeiot.kddi.com/anshinwatcher/kids/assets/img/main/w_device_main.png';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}">
+            <div class="img-fallback" style="display:none">Anshin Watcher LE<br>KDDI (au)</div>
+          </div>
+          <div class="device-name">Anshin Watcher LE</div>
+          <div class="device-brand">KDDI (au)</div>
+          <div class="device-tag tag-budget">Best Value</div>
+          <div class="link-row">
+            <a class="site-link" href="https://homeiot.kddi.com/anshinwatcher/kids/" target="_blank" rel="noopener">🔗 Official Site</a>
+            <a class="site-link site-link-amazon" href="https://www.amazon.co.jp/dp/B0B3F6TYGN" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </td>
+        <td>
+          <div class="price-main">¥5,680</div>
+          <div class="price-note">Often free or 50% off<br>w/ au HOME plan</div>
+        </td>
+        <td>
+          <div class="monthly-main">¥539</div>
+          <div class="monthly-note">2nd device free monthly<br>Works with any carrier</div>
+        </td>
+        <td><span class="precision-a">A</span><br><span style="font-size:10px;color:var(--muted);margin-top:3px;display:block;">GPS+WiFi+Cell<br>Very stable</span></td>
+        <td>
+          <span class="badge badge-no">✗ None</span>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">No voice or text<br>messaging</div>
+        </td>
+        <td>
+          <div class="battery">~2 months</div>
+          <div class="battery-note">Best-in-class battery</div>
+        </td>
+        <td>
+          <div class="waterproof-cell waterproof-ok">Splash-resistant<br><span style="color:var(--muted);font-size:10px">No stated IP rating</span></div>
+        </td>
+        <td>
+          <div class="features-list">
+            <div class="feat"><span class="feat-icon">◆</span>Industry-longest battery (2 months)</div>
+            <div class="feat"><span class="feat-icon">◆</span>2nd device free (sibling-friendly)</div>
+            <div class="feat"><span class="feat-icon">◆</span>PTA Recommended Product certified</div>
+            <div class="feat"><span class="feat-icon">◆</span>Oricon #1 ranking (2024)</div>
+          </div>
+        </td>
+        <td>
+          <div class="verdict">
+            <strong>Best cost value</strong>
+            Siblings / households on a budget
+          </div>
+          <div class="best-for-pill">Siblings · Low cost</div>
+        </td>
+      </tr>
+
+      <!-- Mitene Mimamori GPS Talk -->
+      <tr>
+        <td>
+          <div class="device-img-wrap">
+            <img class="device-img"
+              src="https://assets.mitene.us/assets/landing_page/gps/mt05/MT05_01-9aa67ae0b40d54433afecc36dc319e890461dd72a4a31e91c6577b1a851d21a6.png"
+              alt="Mitene Mimamori GPS Talk"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="img-fallback" style="display:none">Mitene GPS Talk<br>(MIXI)</div>
+          </div>
+          <div class="device-name">Mitene Mimamori GPS Talk</div>
+          <div class="device-brand">MIXI (Tokyo, listed)</div>
+          <div class="device-tag tag-featured">User #1 Rated</div>
+          <div class="link-row">
+            <a class="site-link" href="https://family-album.com/gps/talk" target="_blank" rel="noopener">🔗 Official Site</a>
+            <a class="site-link site-link-amazon" href="https://www.amazon.co.jp/s?k=%E3%81%BF%E3%81%A6%E3%81%AD%E3%81%BF%E3%81%BE%E3%82%82%E3%82%8AGPS%E3%83%88%E3%83%BC%E3%82%AF" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </td>
+        <td>
+          <div class="price-main">¥5,280</div>
+          <div class="price-note">Amazon / official<br>4th gen (MT04)</div>
+        </td>
+        <td>
+          <div class="monthly-main">¥748</div>
+          <div class="monthly-note">GPS+Talk plan<br>GPS only: ¥528</div>
+        </td>
+        <td><span class="precision-a">A</span><br><span style="font-size:10px;color:var(--muted);margin-top:3px;display:block;">L1/L5 Dual Band<br>Multi-satellite</span></td>
+        <td>
+          <span class="badge badge-yes">✓ Voice</span>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">Bidirectional voice<br>Text→voice AI</div>
+        </td>
+        <td>
+          <div class="battery">~3 weeks</div>
+          <div class="battery-note">w/ Talk plan active</div>
+        </td>
+        <td>
+          <div class="waterproof-cell waterproof-ok">Splash-resistant<br><span style="color:var(--muted);font-size:10px">IPX4-equivalent</span></div>
+        </td>
+        <td>
+          <div class="features-list">
+            <div class="feat"><span class="feat-icon">◆</span>Unified management via Mitene app</div>
+            <div class="feat"><span class="feat-icon">◆</span>Unlimited number of watchers</div>
+            <div class="feat"><span class="feat-icon">◆</span>Movement direction icon on map</div>
+            <div class="feat"><span class="feat-icon">◆</span>Voice memos saved to camera roll</div>
+          </div>
+        </td>
+        <td>
+          <div class="verdict">
+            <strong>App experience #1</strong>
+            Families already using the Mitene album app
+          </div>
+          <div class="best-for-pill">App lovers · Talk</div>
+        </td>
+      </tr>
+
+      <!-- MamoSearch 3 -->
+      <tr>
+        <td>
+          <div class="device-img-wrap">
+            <img class="device-img"
+              src="https://mamosearch.jp/wp-content/uploads/2023/01/mamosearch3_img.png"
+              alt="MamoSearch 3"
+              onerror="this.src='https://m.media-amazon.com/images/I/61w9JOdYrxL._AC_SL1500_.jpg';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}">
+            <div class="img-fallback" style="display:none">MamoSearch 3<br>+Style / SoftBank</div>
+          </div>
+          <div class="device-name">MamoSearch 3</div>
+          <div class="device-brand">+Style / BB Soft Service<br>(SoftBank Group)</div>
+          <div class="device-tag tag-budget">Cheapest Device</div>
+          <div class="link-row">
+            <a class="site-link" href="https://mamosearch.jp/" target="_blank" rel="noopener">🔗 Official Site</a>
+            <a class="site-link site-link-amazon" href="https://www.amazon.co.jp/dp/B0BQYBCD31" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </td>
+        <td>
+          <div class="price-main">¥2,750</div>
+          <div class="price-note">Amazon / +Style<br>Lowest device price</div>
+        </td>
+        <td>
+          <div class="monthly-main">¥528</div>
+          <div class="monthly-note">Month or annual<br>No special promos</div>
+        </td>
+        <td><span class="precision-s">S</span><br><span style="font-size:10px;color:var(--muted);margin-top:3px;display:block;">GPS+WiFi+Cell<br>MyBest #1 precision</span></td>
+        <td>
+          <span class="badge badge-no">✗ None</span>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">No voice messaging<br>Notify button only</div>
+        </td>
+        <td>
+          <div class="battery">~2 months</div>
+          <div class="battery-note">Excellent battery</div>
+        </td>
+        <td>
+          <div class="waterproof-cell waterproof-ok">Splash-resistant<br><span style="color:var(--muted);font-size:10px">No stated IP rating</span></div>
+        </td>
+        <td>
+          <div class="features-list">
+            <div class="feat"><span class="feat-icon">◆</span>Lightest &amp; most compact class</div>
+            <div class="feat"><span class="feat-icon">◆</span>10 color covers available</div>
+            <div class="feat"><span class="feat-icon">◆</span>Suspicious person alert zone integration</div>
+            <div class="feat"><span class="feat-icon">◆</span>PTA Recommended Product certified</div>
+          </div>
+        </td>
+        <td>
+          <div class="verdict">
+            <strong>Lightweight & cheap</strong>
+            Simple tracking, ultra-portable form
+          </div>
+          <div class="best-for-pill">Budget · Compact</div>
+        </td>
+      </tr>
+
+      <!-- Dokokana GPS 2 -->
+      <tr>
+        <td>
+          <div class="device-img-wrap">
+            <img class="device-img"
+              src="https://cdn.softbank.jp/mobile/set/common/products/mimamorimobile/dokokana-gps2/images/top/NC002_wh_01.png"
+              alt="Dokokana GPS 2"
+              onerror="this.src='https://m.media-amazon.com/images/I/51OAUb6VQLL._AC_SL1500_.jpg';this.onerror=function(){this.style.display='none';this.nextElementSibling.style.display='flex'}">
+            <div class="img-fallback" style="display:none">Dokokana GPS 2<br>SoftBank</div>
+          </div>
+          <div class="device-name">Dokokana GPS 2</div>
+          <div class="device-brand">SoftBank</div>
+          <div class="device-tag tag-compact">6-mo Free Trial</div>
+          <div class="link-row">
+            <a class="site-link" href="https://www.softbank.jp/mobile/products/mimamorimobile/dokokana-gps2/" target="_blank" rel="noopener">🔗 Official Site</a>
+            <a class="site-link site-link-amazon" href="https://www.amazon.co.jp/s?k=%E3%81%A9%E3%81%93%E3%81%8B%E3%81%AAGPS2" target="_blank" rel="noopener">Amazon</a>
+          </div>
+        </td>
+        <td>
+          <div class="price-main">¥7,480</div>
+          <div class="price-note">Official / Amazon<br>Sumikko Gurashi edition available</div>
+        </td>
+        <td>
+          <div class="monthly-main">¥528</div>
+          <div class="monthly-note">First 6 months FREE<br>then ¥528/mo</div>
+        </td>
+        <td><span class="precision-a">A</span><br><span style="font-size:10px;color:var(--muted);margin-top:3px;display:block;">L1/L5 Dual Band<br>5 satellite systems</span></td>
+        <td>
+          <span class="badge badge-no">✗ None</span>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">Notify button<br>No voice</div>
+        </td>
+        <td>
+          <div class="battery">~1.5 months</div>
+          <div class="battery-note">Good but not best</div>
+        </td>
+        <td>
+          <div class="waterproof-cell waterproof-ok">Splash-resistant<br><span style="color:var(--muted);font-size:10px">No IP rating stated</span></div>
+        </td>
+        <td>
+          <div class="features-list">
+            <div class="feat"><span class="feat-icon">◆</span>Vehicle detection (bus / train)</div>
+            <div class="feat"><span class="feat-icon">◆</span>Up to 11 smartphones can monitor</div>
+            <div class="feat"><span class="feat-icon">◆</span>First 6 months free on service plan</div>
+            <div class="feat"><span class="feat-icon">◆</span>Maintains high accuracy in rain</div>
+          </div>
+        </td>
+        <td>
+          <div class="verdict">
+            <strong>Best for transit users</strong>
+            Kids who take buses or trains
+          </div>
+          <div class="best-for-pill">Transit · Families</div>
+        </td>
+      </tr>
+
+      <!-- SayuU Toyota -->
+      <tr>
+        <td>
+          <div class="device-img-wrap">
+            <img class="device-img"
+              src="https://kodomogps.com/wp-content/uploads/2025/02/sayuu_3.png"
+              alt="SayuU"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="img-fallback" style="display:none">SayuU<br>Toyota</div>
+          </div>
+          <div class="device-name">SayuU</div>
+          <div class="device-brand">Toyota (TOYOTA)</div>
+          <div class="device-tag tag-new">2025 New</div>
+          <div class="device-tag tag-premium">Premium</div>
+          <div class="link-row">
+            <a class="site-link" href="https://global.toyota/newbiz/becre/sayuu/" target="_blank" rel="noopener">🔗 Official Site</a>
+          </div>
+        </td>
+        <td>
+          <div class="price-main">¥16,500</div>
+          <div class="price-note">+ ¥1,850 shipping/<br>handling fee</div>
+        </td>
+        <td>
+          <div class="monthly-main">¥1,210</div>
+          <div class="monthly-note">Highest monthly cost<br>Incl. full data plan</div>
+        </td>
+        <td><span class="precision-a">A</span><br><span style="font-size:10px;color:var(--muted);margin-top:3px;display:block;">Realtime tracking<br>Route deviation alert</span></td>
+        <td>
+          <span class="badge badge-call">☎ Real Calls</span>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">Actual phone calls<br>+ chat messaging</div>
+        </td>
+        <td>
+          <div class="battery">—</div>
+          <div class="battery-note">Not published yet<br>(new device)</div>
+        </td>
+        <td>
+          <div class="waterproof-cell waterproof-good">IP67<br><span style="font-size:10px">Fully waterproof</span></div>
+        </td>
+        <td>
+          <div class="features-list">
+            <div class="feat"><span class="feat-icon">◆</span>Real phone calls (only GPS with this)</div>
+            <div class="feat"><span class="feat-icon">◆</span>Left/right road-crossing check detection</div>
+            <div class="feat"><span class="feat-icon">◆</span>Wearable: hat clip or armband mount</div>
+            <div class="feat"><span class="feat-icon">◆</span>SOS sends ambient audio to parents</div>
+          </div>
+        </td>
+        <td>
+          <div class="verdict">
+            <strong>Most advanced</strong>
+            Want real phone calls + traffic safety focus
+          </div>
+          <div class="best-for-pill">Safety-first · Calls</div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="footer-note">
+  * All prices in JPY (tax included). Monthly fees are standard rates; campaigns and discounts are offered seasonally — check official sites.
+  &nbsp;·&nbsp; GPS Precision rated S/A/B based on real-world testing by multiple independent Japanese review sites (MyBest, Kodomo GPS Lab, Kodomo Mimamori Concierge).
+  &nbsp;·&nbsp; All devices work Japan-wide (SoftBank LTE network coverage). Parent smartphone carrier does not need to match device carrier.
+  &nbsp;·&nbsp; Data current as of Feb 2026. Prices and plans subject to change.
+</div>
+
+</body>
+</html>
